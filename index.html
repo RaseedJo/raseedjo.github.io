@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Raseed — Coming Soon</title>
+  <title>Raseed — Elevating home businesses | Coming Soon</title>
   <meta name="description" content="Raseed helps home-based sellers in Jordan track orders, send professional receipts, and get paid with CliQ. Coming soon.">
   <meta name="theme-color" content="#1F5C5A">
   <meta name="color-scheme" content="dark">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://raseedjo.github.io/">
   <meta property="og:site_name" content="Raseed">
-  <meta property="og:title" content="Raseed — Coming Soon">
+  <meta property="og:title" content="Raseed — Elevating home businesses | Coming Soon">
   <meta property="og:description" content="Raseed helps home-based sellers in Jordan track orders, send professional receipts, and get paid with CliQ. Coming soon.">
   <meta property="og:image" content="https://raseedjo.github.io/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="ar_JO">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Raseed — Coming Soon">
+  <meta name="twitter:title" content="Raseed — Elevating home businesses | Coming Soon">
   <meta name="twitter:description" content="Raseed helps home-based sellers in Jordan track orders, send professional receipts, and get paid with CliQ. Coming soon.">
   <meta name="twitter:image" content="https://raseedjo.github.io/assets/og-image.png">
 
@@ -86,7 +86,7 @@
             <input class="field__input" id="email" name="email" type="email"
                    autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required
                    placeholder="Your email address" data-i18n-attr="placeholder:emailPlaceholder"
-                   aria-describedby="form-status">
+                   aria-describedby="form-status form-note">
             <button class="btn" id="submit-btn" type="submit">
               <span class="btn__content">
                 <span data-i18n="submit">Join the waitlist</span>
@@ -106,7 +106,11 @@
             <input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off">
           </div>
 
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <!-- Status messages (errors, loading) temporarily take the privacy note's place -->
+          <div class="form-meta" id="form-meta">
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            <p class="form-note" id="form-note" data-i18n="privacyNote">We'll only use your email to tell you when Raseed launches. No spam, and you can ask us to remove it anytime.</p>
+          </div>
         </form>
 
         <div class="success" id="success" tabindex="-1" hidden>

@@ -73,6 +73,11 @@ in `script.js`. That's the label screen readers announce.
 
 **Page title and description** (shown in Google and link previews) are in the
 `<head>` of `index.html`: `<title>`, `description`, and the `og:` / `twitter:` tags.
+The title also appears as `pageTitle` in `script.js` (both languages), because it
+changes when a visitor switches language. Keep the English one in sync with `index.html`.
+
+**Privacy note** under the waitlist form is `privacyNote` in `script.js`. Error and
+"loading" messages briefly take its place, then it reappears.
 
 **Colors** are CSS variables at the top of `styles.css` (`--teal`, `--terracotta`,
 `--cream`, …). Some colors also appear as `R, G, B` numbers (for example

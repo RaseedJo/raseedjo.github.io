@@ -10,7 +10,7 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/xvkgbjek";
 // All page text, in both languages. Keys match the data-i18n attributes in index.html.
 const TRANSLATIONS = {
   en: {
-    pageTitle: "Raseed — Coming Soon",
+    pageTitle: "Raseed — Elevating home businesses | Coming Soon",
     langGroup: "Language",
     logoLabel: "Raseed",
     headline: "Coming Soon",
@@ -26,12 +26,13 @@ const TRANSLATIONS = {
     errorInvalid: "Please enter a valid email address.",
     errorServer: "Something went wrong. Please try again in a moment.",
     errorNetwork: "Couldn't connect. Check your internet connection and try again.",
+    privacyNote: "We'll only use your email to tell you when Raseed launches. No spam, and you can ask us to remove it anytime.",
     contactLead: "Have an inquiry? Reach us at",
     instagramLabel: "Raseed on Instagram, @getraseed",
     footer: "© 2026 Raseed. All rights reserved.",
   },
   ar: {
-    pageTitle: "رصيد — قريباً",
+    pageTitle: "رصيد — نرتقي بالمشاريع المنزلية | قريباً",
     langGroup: "اللغة",
     logoLabel: "رصيد",
     headline: "قريباً",
@@ -47,6 +48,7 @@ const TRANSLATIONS = {
     errorInvalid: "يرجى إدخال بريد إلكتروني صحيح.",
     errorServer: "حدث خطأ ما. يرجى المحاولة مرة أخرى بعد قليل.",
     errorNetwork: "تعذّر الاتصال. تحقّق من اتصالك بالإنترنت وحاول مجدداً.",
+    privacyNote: "سنستخدم بريدك الإلكتروني فقط لإعلامك بإطلاق رصيد. بدون رسائل مزعجة، ويمكنك طلب حذفه في أي وقت.",
     contactLead: "لأي استفسار، تواصل معنا على",
     instagramLabel: "رصيد على إنستغرام، @getraseed",
     footer: "© 2026 رصيد. جميع الحقوق محفوظة.",
@@ -72,6 +74,7 @@ const TRANSLATIONS = {
   const input = document.getElementById("email");
   const submitBtn = document.getElementById("submit-btn");
   const status = document.getElementById("form-status");
+  const formMeta = document.getElementById("form-meta");
   const languageField = document.getElementById("language-field");
   const signup = document.getElementById("signup");
   const success = document.getElementById("success");
@@ -155,6 +158,7 @@ const TRANSLATIONS = {
     statusKey = key;
     status.textContent = key ? TRANSLATIONS[currentLang][key] : "";
     status.classList.toggle("is-error", Boolean(isError));
+    formMeta.classList.toggle("has-status", Boolean(key)); // swaps the privacy note out
     field.classList.toggle("is-invalid", Boolean(isError) && key !== "errorServer" && key !== "errorNetwork");
     if (isError && (key === "errorEmpty" || key === "errorInvalid")) {
       input.setAttribute("aria-invalid", "true");

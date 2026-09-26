@@ -17,6 +17,7 @@
   /* Supporting tones (derived from the brand colors) */
   --ink: #0B2A29;             /* text on terracotta buttons */
   --terracotta-soft: #F4B08F; /* focus rings */
+  --terracotta-tint: #F7C4AA; /* tagline (light terracotta, 4.9:1 on teal) */
   --error: #FAC4A8;           /* error text */
   --cream-muted: #D6DBD3;     /* body text */
   --cream-subtle: #C2CDC6;    /* small print, placeholders */
@@ -331,15 +332,18 @@ button { -webkit-tap-highlight-color: transparent; }
   background: var(--terracotta);
 }
 
+/* Tagline: a refined, tracked-out label under the big heading */
 .tagline {
-  margin-top: 0.9rem;
-  font-family: var(--font-serif);
-  font-size: clamp(1.15rem, 1rem + 0.7vw, 1.45rem);
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.35;
-  letter-spacing: -0.005em;
-  color: var(--cream);
+  margin-top: 1.15rem;
+  /* Letter-spacing adds space after the last letter; this re-centers the line */
+  padding-inline-start: 0.2em;
+  font-family: var(--font-sans);
+  font-size: clamp(0.78rem, 0.74rem + 0.2vw, 0.875rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta-tint);
 }
 
 .blurb {
@@ -366,9 +370,13 @@ html[lang="ar"] .headline {
   line-height: 1.25;
 }
 
+/* Arabic has no capitals and letter-spacing breaks joined letters */
 html[lang="ar"] .tagline {
+  padding-inline-start: 0;
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
   font-weight: 500;
   line-height: 1.6;
+  text-transform: none;
 }
 
 html[lang="ar"] .blurb {
@@ -554,15 +562,49 @@ html[lang="ar"] .btn {
   .btn:hover .btn__arrow { transform: translate3d(calc(3px * var(--dir)), 0, 0) scaleX(var(--dir)); }
 }
 
-.form-status {
-  min-height: 1.6em;
+/* The privacy note and status messages share one slot, so an error or
+   "loading" message swaps in for the note without moving the page */
+.form-meta {
+  display: grid;
   margin-top: 12px;
+}
+
+.form-meta > * {
+  grid-area: 1 / 1;
+  align-self: start;
+}
+
+.form-status {
   font-size: 0.875rem;
   line-height: 1.6;
   color: var(--cream-muted);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
+.form-meta.has-status .form-status { opacity: 1; }
 .form-status.is-error { color: var(--error); }
+
+.form-note {
+  max-width: 25rem;
+  margin-inline: auto;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(var(--cream-rgb), 0.74); /* as faint as possible while staying readable */
+  text-wrap: balance;
+  transition: opacity 0.25s ease, visibility 0s linear 0s;
+}
+
+.form-meta.has-status .form-note {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+}
+
+html[lang="ar"] .form-note {
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
 
 /* Honeypot (spam trap) — hidden from people */
 .hp {
@@ -806,6 +848,8 @@ html[lang="ar"] .success__title {
 
   .page,
   .waitlist,
+  .form-status,
+  .form-note,
   .lang__dot,
   .btn,
   .btn__arrow,
@@ -854,6 +898,7 @@ html[lang="ar"] .success__title {
 @media (max-height: 820px) and (min-width: 521px) {
   .hero { padding-block: 12px; }
   .logo { margin-bottom: 24px; }
-  .signup { margin-top: 1.5rem; }
+  .signup { margin-top: 1.25rem; }
+  .form-meta { margin-top: 8px; }
   .contact { margin-top: 0.75rem; }
 }

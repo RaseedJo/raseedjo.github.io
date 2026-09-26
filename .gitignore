@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Local testing only (preview server config, logs, test output)
+.claude/
+*.log
+npm-debug.log*
+screenshots/
+
+# Secrets
+.env
+.env.*
+
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

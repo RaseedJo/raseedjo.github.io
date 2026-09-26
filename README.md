@@ -20,7 +20,7 @@ exact colors sampled from it. The icon is rebuilt as SVG strokes so the
 checkmark can "draw" itself. The page doesn't load the original PNG; it's kept
 for reference.
 
-**Live site:** <https://betafan123.github.io/Raseed/>
+**Live site:** <https://raseedjo.github.io/>
 
 ---
 
@@ -86,14 +86,14 @@ update its matching RGB line too.
 - English is the default. Visitors whose browser is set to Arabic get Arabic.
 - The EN | ع toggle remembers the visitor's choice on their device.
 - To share a link that always opens in Arabic, e.g. in an Arabic Instagram
-  bio or story, use <https://betafan123.github.io/Raseed/?lang=ar>.
+  bio or story, use <https://raseedjo.github.io/?lang=ar>.
 
 ---
 
 ## Publishing (GitHub Pages)
 
 The site is published from the `main` branch of
-<https://github.com/betafan123/Raseed> with GitHub Pages
+<https://github.com/RaseedJo/raseedjo.github.io> with GitHub Pages
 (**Settings → Pages → Deploy from a branch → `main` / `(root)`**).
 
 To update it, commit your changes and push to `main`:
@@ -111,7 +111,7 @@ GitHub rebuilds the site within a minute or two. Check progress under the repo's
 
 WhatsApp, Instagram and Facebook need **full** web addresses for the preview.
 They're set in the `<head>` of `index.html` (`og:url`, `og:image`,
-`twitter:image`) and point at `https://betafan123.github.io/Raseed/`. If the site
+`twitter:image`) and point at `https://raseedjo.github.io/`. If the site
 ever moves (a custom domain, or Netlify), update those three. Then check the
 preview with <https://developers.facebook.com/tools/debug/> (use **Scrape Again**
 if it shows an old version).

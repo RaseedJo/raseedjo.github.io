@@ -249,6 +249,7 @@ const TRANSLATIONS = {
     setLoading(false);
     if (outcome === "success") {
       showSuccess();
+      if (window.fbq) fbq("track", "Lead"); // Meta Pixel: count the signup
     } else {
       setStatus(outcome, true);
     }

@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Raseed app — design tokens
+   Brand colors and fonts are copied from the landing page (../styles.css)
+   so the landing page's CSS stays untouched. If a brand color changes there,
+   change it here too.
+   ========================================================================== */
+
+:root {
+  /* Brand (same as the landing page) */
+  --teal: #1F5C5A;
+  --terracotta: #E07A4F;
+  --cream: #FBF5EC;
+  --ink: #0B2A29;
+  --terracotta-soft: #F4B08F;
+  --terracotta-tint: #F7C4AA;
+  --cream-muted: #D6DBD3;
+  --cream-rgb: 251, 245, 236;
+  --teal-rgb: 31, 92, 90;
+  --terracotta-rgb: 224, 122, 79;
+
+  /* App surfaces (light, for comfortable reading of lists and forms).
+     Text colors below all reach at least 4.5:1 contrast on --bg and --surface. */
+  --bg: #F7F1E7;
+  --surface: #FFFDF9;
+  --surface-sunken: #F1E9DC;
+  --text: #0B2A29;            /* 13.6:1 */
+  --text-2: #3D5755;          /* 6.9:1  secondary */
+  --text-3: #586E6C;          /* 4.8:1  hints, captions */
+  --accent-text: #A44A22;     /* 5.2:1  terracotta that's readable as text */
+  --border: rgba(var(--teal-rgb), 0.14);
+  --border-strong: rgba(var(--teal-rgb), 0.28);
+  --focus: var(--teal);
+
+  /* Feedback */
+  --danger: #B3261E;          /* 5.8:1 */
+  --danger-bg: #FBE9E7;
+  --success: #1E6B43;         /* 5.8:1 */
+  --success-bg: #E5F2EA;
+  --warning-bg: #FCEBD9;
+
+  /* On the teal brand bar / auth screens */
+  --on-teal: var(--cream);
+  --on-teal-muted: var(--cream-muted);
+  --on-teal-line: rgba(var(--cream-rgb), 0.16);
+  --on-teal-glass: rgba(var(--cream-rgb), 0.06);
+
+  /* Type */
+  --font-serif: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-arabic: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+
+  /* Shape + depth */
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 2px rgba(11, 42, 41, 0.06);
+  --shadow: 0 1px 2px rgba(11, 42, 41, 0.05), 0 8px 24px -12px rgba(11, 42, 41, 0.18);
+  --shadow-lg: 0 24px 60px -20px rgba(11, 42, 41, 0.45);
+
+  /* Layout */
+  --appbar-h: 60px;
+  --tabbar-h: 64px;
+  --sidebar-w: 248px;
+  --content-max: 1120px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* 1 in left-to-right, -1 in right-to-left (used to mirror arrows) */
+  --dir: 1;
+}
+
+html[dir="rtl"] { --dir: -1; }

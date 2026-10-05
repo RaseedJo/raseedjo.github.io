@@ -1,0 +1,131 @@
+{
+  "app": {
+    "name": "Raseed",
+    "prototype": "Prototype",
+    "titleSuffix": "Raseed prototype",
+    "storageBlocked": "Your browser is blocking storage, so nothing will be saved after you close this tab.",
+    "joinWaitlistNudge": "Like it? Join the waitlist",
+    "joinWaitlist": "Join the waitlist",
+    "dataNote": "Everything you enter stays in this browser.",
+    "loadError": "Something went wrong while loading this page.",
+    "reload": "Reload"
+  },
+  "lang": {
+    "group": "Language"
+  },
+  "nav": {
+    "label": "Main",
+    "dashboard": "Home",
+    "orders": "Orders",
+    "customers": "Customers",
+    "invoices": "Invoices",
+    "settings": "Settings",
+    "logOut": "Log out",
+    "home": "Raseed home"
+  },
+  "auth": {
+    "welcomeTitle": "Run your home business from one place",
+    "welcomeBody": "Track orders and customers, and create professional invoices.",
+    "tryDemo": "Try the demo",
+    "tryDemoHint": "Explore Mama Huda's Kitchen, a sample home kitchen. No sign-up needed.",
+    "orLogIn": "or log in",
+    "email": "Email",
+    "password": "Password",
+    "logIn": "Log in",
+    "loggingIn": "Logging in…",
+    "noAccount": "New here?",
+    "createAccount": "Create an account",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "signupTitle": "Create your account",
+    "signupBody": "Set up a demo account to try Raseed with your own business.",
+    "demoNote": "Demo only. Your data stays in this browser. Don't use a real password.",
+    "fullName": "Full name",
+    "businessName": "Business name",
+    "businessType": "Business type",
+    "passwordHint": "At least 6 characters.",
+    "createAccountBtn": "Create account",
+    "creating": "Creating your account…",
+    "haveAccount": "Already have an account?",
+    "logInLink": "Log in",
+    "waitlistNote": "A demo account doesn't add you to the waitlist.",
+    "footNote": "This is a prototype. Everything you enter stays in this browser and is never sent anywhere.",
+    "businessTypes": {
+      "food": "Food",
+      "fashion": "Fashion & resale",
+      "handmade": "Handmade",
+      "beauty": "Beauty",
+      "other": "Other"
+    },
+    "placeholders": {
+      "fullName": "e.g. Lina Haddad",
+      "businessName": "e.g. Lina's Bakes",
+      "email": "you@example.com"
+    }
+  },
+  "errors": {
+    "required": "Please fill in this field.",
+    "nameShort": "Please enter at least 2 characters.",
+    "emailInvalid": "Please enter a valid email address.",
+    "emailTaken": "There's already an account with this email in this browser. Try logging in instead.",
+    "passwordShort": "Use at least 6 characters.",
+    "typeRequired": "Please choose a business type.",
+    "loginFailed": "That email and password don't match an account in this browser.",
+    "noCrypto": "Accounts need a secure (https) connection, which this page doesn't have. You can still try the demo.",
+    "storageFull": "This browser's storage is full, so the change couldn't be saved.",
+    "generic": "Something went wrong. Please try again."
+  },
+  "dashboard": {
+    "title": "Home",
+    "morning": "Good morning, {name}",
+    "afternoon": "Good afternoon, {name}",
+    "evening": "Good evening, {name}",
+    "comingTitle": "Your dashboard is on its way",
+    "comingBody": "Orders, customers, invoices and sales charts are being added to this prototype. Check back soon."
+  },
+  "placeholder": {
+    "title": "Coming soon to the prototype",
+    "body": "This section is being built. Check back soon."
+  },
+  "settings": {
+    "title": "Settings",
+    "business": "Your business",
+    "businessName": "Business",
+    "owner": "Owner",
+    "type": "Type",
+    "email": "Email",
+    "demoAccount": "Demo account",
+    "demoTitle": "Demo data",
+    "resetDemo": "Reset demo data",
+    "resetDemoHint": "Bring back the original sample orders, customers and invoices.",
+    "resetConfirmTitle": "Reset demo data?",
+    "resetConfirmBody": "Any changes you made in the demo will be replaced with fresh sample data.",
+    "resetConfirmBtn": "Reset data",
+    "resetDone": "Demo data has been reset.",
+    "accountTitle": "Account",
+    "logOut": "Log out",
+    "logOutHint": "Your data stays saved in this browser for next time.",
+    "loggedOut": "You've logged out.",
+    "deleteAccount": "Delete my account",
+    "deleteHint": "Permanently removes this account and everything in it from this browser.",
+    "deleteConfirmTitle": "Delete your account?",
+    "deleteConfirmBody": "{business} and all of its orders, customers and invoices will be removed from this browser. This can't be undone.",
+    "deleteConfirmBtn": "Delete account",
+    "deleted": "Your account has been deleted.",
+    "aboutTitle": "About this prototype",
+    "aboutBody": "Raseed is still being built, and this prototype shows how it will work. Everything you enter stays in this browser and is never sent anywhere. Creating an account doesn't add you to the waitlist."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This page doesn't exist in the prototype.",
+    "home": "Go to home"
+  },
+  "demo": {
+    "ownerName": "Huda Saleh",
+    "businessName": "Mama Huda's Kitchen"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "close": "Close"
+  }
+}

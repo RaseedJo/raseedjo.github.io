@@ -53,10 +53,20 @@ const ICONS = {
   lock: '<rect x="5" y="10.5" width="14" height="10" rx="2.2"/><path d="M8.2 10.5V7.8a3.8 3.8 0 0 1 7.6 0v2.7"/>',
   sparkle: '<path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9-1.9 5.1-1.9-5.1-5.1-1.9 5.1-1.9L12 3.5Z"/><path d="M19 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z"/>',
   tools: '<path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L4 17l3 3 5.2-5.2a4 4 0 0 0 5.3-5.3l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6Z"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  search: '<circle cx="10.5" cy="10.5" r="6.2"/><path d="M15.2 15.2 20 20"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.8h17M8 3v4M16 3v4"/>',
+  pin: '<path d="M12 21s-6.5-5.7-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 15.3 12 21 12 21Z"/><circle cx="12" cy="9.8" r="2.3"/>',
+  trash: '<path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13"/><path d="M10 11v5.5M14 11v5.5"/>',
+  edit: '<path d="M4 20h4L19.4 8.6a2.1 2.1 0 0 0-3-3L5 17v3"/><path d="M14.5 7.5l2 2"/>',
+  phone: '<path d="M6.6 3.5h2.6l1.4 4-2 1.3a10.5 10.5 0 0 0 6.6 6.6l1.3-2 4 1.4v2.6a1.9 1.9 0 0 1-2 1.9A16.5 16.5 0 0 1 4.6 5.5a1.9 1.9 0 0 1 2-2Z"/>',
+  message: '<path d="M4.5 19.5l1.3-3.7A7.8 7.8 0 1 1 8.7 18.5l-4.2 1Z"/>',
+  back: '<path d="M19 12H5M10.5 6.5 5 12l5.5 5.5"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
 };
 
 // Icons that point somewhere and must be mirrored in Arabic
-const DIRECTIONAL = new Set(["arrow", "logout"]);
+const DIRECTIONAL = new Set(["arrow", "logout", "back"]);
 
 export function icon(name, extraClass = "") {
   const cls = ["icon", DIRECTIONAL.has(name) ? "icon--dir" : "", extraClass].filter(Boolean).join(" ");
@@ -94,6 +104,8 @@ function ensureToastRoot() {
 export function toast(message, { action, duration = 4500 } = {}) {
   const root = ensureToastRoot();
   root.classList.toggle("toasts--top", Boolean(document.querySelector(".auth")));
+  // Sit above the floating "New order" button on phones
+  root.classList.toggle("toasts--raised", Boolean(document.querySelector(".fab")) && window.matchMedia("(max-width: 959px)").matches);
   const el = document.createElement("div");
   el.className = action ? "toast toast--action" : "toast";
   el.innerHTML = html`<span class="toast__text">${message}</span>${action ? html`<button type="button" class="toast__action">${action.label}</button>` : ""}`;
@@ -158,7 +170,7 @@ export function confirmDialog({ title, body, confirmLabel, danger = false }) {
 /* ---------- Forms ---------- */
 
 /** A labelled text input with optional hint and an error slot. */
-export function field({ name, label, type = "text", value = "", hint = "", autocomplete = "", placeholder = "", inputmode = "", ltr = false }) {
+export function field({ name, label, type = "text", value = "", hint = "", autocomplete = "", placeholder = "", inputmode = "", ltr = false, list = "" }) {
   const id = `f-${name}`;
   const describedBy = [hint ? `${id}-hint` : "", `${id}-error`].filter(Boolean).join(" ");
   return html`
@@ -169,10 +181,38 @@ export function field({ name, label, type = "text", value = "", hint = "", autoc
              ${raw(placeholder ? `placeholder="${escapeHtml(placeholder)}"` : "")}
              ${raw(inputmode ? `inputmode="${inputmode}"` : "")}
              ${raw(ltr ? "data-ltr" : "")}
+             ${raw(list ? `list="${list}"` : "")}
              aria-describedby="${describedBy}">
       ${hint ? html`<p class="field__hint" id="${id}-hint">${hint}</p>` : ""}
       <p class="field__error" id="${id}-error" hidden></p>
     </div>`;
+}
+
+/** Multi-line text (notes). */
+export function textareaField({ name, label, value = "", placeholder = "" }) {
+  const id = `f-${name}`;
+  return html`
+    <div class="field" data-field="${name}">
+      <label class="field__label" for="${id}">${label}</label>
+      <textarea class="input textarea" id="${id}" name="${name}" rows="3" placeholder="${placeholder}" aria-describedby="${id}-error">${value}</textarea>
+      <p class="field__error" id="${id}-error" hidden></p>
+    </div>`;
+}
+
+/** A row of tappable chips that work like radio buttons. */
+export function choiceGroup({ name, legend, options, value }) {
+  return html`
+    <fieldset class="choices" data-field="${name}" aria-describedby="f-${name}-error">
+      <legend class="choices__legend">${legend}</legend>
+      <div class="choices__list">
+        ${options.map((option) => html`
+          <label class="choice">
+            <input type="radio" name="${name}" value="${option.value}" ${option.value === value ? "checked" : ""}>
+            <span>${option.label}</span>
+          </label>`)}
+      </div>
+      <p class="field__error" id="f-${name}-error" hidden></p>
+    </fieldset>`;
 }
 
 /** Password input with a show/hide button. */
@@ -196,15 +236,19 @@ export function setFieldError(form, name, message) {
   if (!wrap) return;
   const error = wrap.querySelector(".field__error");
   const control = wrap.querySelector("input, select, textarea");
-  const group = wrap.matches("fieldset") ? wrap : null;
+  const target = wrap.matches("fieldset") ? wrap : control;
   if (message) {
-    error.innerHTML = html`${icon("alert")}<span>${message}</span>`;
-    error.hidden = false;
-    (group || control).setAttribute("aria-invalid", "true");
+    if (error) {
+      error.innerHTML = html`${icon("alert")}<span>${message}</span>`;
+      error.hidden = false;
+    }
+    if (target) target.setAttribute("aria-invalid", "true");
   } else {
-    error.hidden = true;
-    error.textContent = "";
-    (group || control).removeAttribute("aria-invalid");
+    if (error) {
+      error.hidden = true;
+      error.textContent = "";
+    }
+    if (target) target.removeAttribute("aria-invalid");
   }
 }
 

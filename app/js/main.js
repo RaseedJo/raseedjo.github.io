@@ -2,7 +2,8 @@
 
 import { initI18n, t, getLang, setLang, onLangChange } from "./i18n.js";
 import { addRoute, currentLocation, matchRoute, navigate, onRouteChange } from "./router.js";
-import { currentAccount, startDemo, businessNameOf, ownerNameOf, logOut } from "./auth.js";
+import { currentAccount, startDemo, businessNameOf, ownerNameOf, logOut, setDemoDataFactory } from "./auth.js";
+import { createDemoData } from "./demo-data.js";
 import { isPersistent, isSessionStorageEvent, StorageFullError } from "./store.js";
 import {
   html, raw, icon, langToggle, enhance, snapshotInputs, restoreInputs, updateLtrInputs, toast,
@@ -12,9 +13,13 @@ import { loginView, signupView } from "./views/auth.js";
 import { homeView } from "./views/home.js";
 import { comingSoonView, notFoundView } from "./views/placeholder.js";
 import { settingsView } from "./views/settings.js";
+import { ordersListView, orderDetailView, orderFormView } from "./views/orders.js";
+import { customersListView, customerDetailView, customerFormView } from "./views/customers.js";
 
 const appRoot = document.getElementById("app");
 const WAITLIST_URL = "../#signup";
+
+setDemoDataFactory(createDemoData);
 
 /* ---------- Routes ---------- */
 
@@ -22,8 +27,15 @@ addRoute("/login", { public: true, guestOnly: true, view: loginView });
 addRoute("/signup", { public: true, guestOnly: true, view: signupView });
 addRoute("/demo", { public: true, action: openDemo });
 addRoute("/dashboard", { nav: "dashboard", view: homeView });
-addRoute("/orders", { nav: "orders", view: comingSoonView("nav.orders", "orders") });
-addRoute("/customers", { nav: "customers", view: comingSoonView("nav.customers", "customers") });
+// "new" and "edit" are listed before "/:id" so they aren't mistaken for an ID
+addRoute("/orders", { nav: "orders", view: ordersListView });
+addRoute("/orders/new", { nav: "orders", view: orderFormView });
+addRoute("/orders/:id/edit", { nav: "orders", view: orderFormView });
+addRoute("/orders/:id", { nav: "orders", view: orderDetailView });
+addRoute("/customers", { nav: "customers", view: customersListView });
+addRoute("/customers/new", { nav: "customers", view: customerFormView });
+addRoute("/customers/:id/edit", { nav: "customers", view: customerFormView });
+addRoute("/customers/:id", { nav: "customers", view: customerDetailView });
 addRoute("/invoices", { nav: "invoices", view: comingSoonView("nav.invoices", "invoices") });
 addRoute("/settings", { nav: "settings", view: settingsView });
 
@@ -154,13 +166,16 @@ function render({ keepInputs = false } = {}) {
     return;
   }
 
+  // When redrawing the same page (language switch, Undo), keep what was typed
   const saved = keepInputs && currentView ? snapshotInputs(currentView.container) : null;
+  const draft = keepInputs && currentView && currentView.getDraft ? currentView.getDraft() : null;
   if (currentView && currentView.unmount) currentView.unmount();
 
   const ctx = {
     params: match ? match.params : {},
     query,
     account,
+    draft,
     navigate,
     rerender: () => render({ keepInputs: true }),
   };
@@ -174,7 +189,7 @@ function render({ keepInputs = false } = {}) {
   if (view.mount) view.mount(container, ctx);
   currentView = { ...view, container };
 
-  document.title = `${t(view.titleKey)} · ${t("app.titleSuffix")}`;
+  document.title = `${view.title || t(view.titleKey)} · ${t("app.titleSuffix")}`;
 
   // Move focus to the new page's heading (helps keyboard and screen-reader users)
   if (!keepInputs) {
@@ -232,6 +247,8 @@ async function boot() {
   });
 
   onLangChange(() => safeRender({ keepInputs: true }));
+  // Data changed outside the current page (e.g. Undo in a message): redraw it
+  window.addEventListener("raseed:data", () => safeRender({ keepInputs: true }));
   onRouteChange(() => safeRender());
 
   // Logging in or out in another tab updates this one too

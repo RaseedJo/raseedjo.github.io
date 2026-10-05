@@ -28,6 +28,10 @@ export function homeView({ account }) {
           <span class="empty__icon">${icon("sparkle")}</span>
           <h2 class="empty__title">${t("dashboard.comingTitle")}</h2>
           <p class="empty__text">${t("dashboard.comingBody")}</p>
+          <div class="empty__actions">
+            <a class="btn btn--primary" href="#/orders">${icon("orders")} ${t("nav.orders")}</a>
+            <a class="btn btn--ghost" href="#/customers">${icon("customers")} ${t("nav.customers")}</a>
+          </div>
         </div>
       </section>
 

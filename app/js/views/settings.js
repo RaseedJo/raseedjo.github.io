@@ -94,6 +94,7 @@ export function settingsView({ account }) {
           if (!ok) return;
           try {
             resetDemoData();
+            window.dispatchEvent(new CustomEvent("raseed:data"));
             toast(t("settings.resetDone"));
           } catch (error) {
             toast(error instanceof StorageFullError ? t("errors.storageFull") : t("errors.generic"));

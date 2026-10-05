@@ -73,6 +73,38 @@ export function t(key, vars) {
   return text.replace(/\{(\w+)\}/g, (match, name) => (name in vars ? String(vars[name]) : match));
 }
 
+/** Plurals, e.g. tp("orders.count", 3). Arabic has six plural forms (zero, one, two, few, many, other). */
+export function tp(key, count, vars = {}) {
+  const category = new Intl.PluralRules(current).select(count);
+  const exact = `${key}.${category}`;
+  const chosen = typeof lookup(current, exact) === "string" ? exact : `${key}.other`;
+  return t(chosen, { count: formatNumber(count), ...vars });
+}
+
+/** A list from the translation files, e.g. suggested areas. */
+export function tList(key) {
+  const list = lookup(current, key) ?? lookup("en", key);
+  return Array.isArray(list) ? list : [];
+}
+
+/* Sample data can store text in both languages ({ en, ar }) so the demo
+   switches language too. Anything a person types is stored as plain text. */
+export function localText(value) {
+  if (value && typeof value === "object") return value[current] ?? value.en ?? "";
+  return value ?? "";
+}
+
+/** Every language version of a value (used for search). */
+export function allTexts(value) {
+  if (value && typeof value === "object") return Object.values(value);
+  return value ? [value] : [];
+}
+
+/** Keep the two-language version if the person didn't change the text. */
+export function keepIfUnchanged(original, edited) {
+  return edited === localText(original) ? original : edited;
+}
+
 /* ---------- Formatting (Western digits 0–9 in both languages) ---------- */
 
 const dateLocale = () => (current === "ar" ? "ar-JO-u-nu-latn" : "en-GB");

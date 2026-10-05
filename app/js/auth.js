@@ -5,7 +5,7 @@
 import { t } from "./i18n.js";
 import {
   getAccounts, saveAccounts, getSession, setSession, clearSession,
-  getData, saveData, deleteData, emptyData, newId,
+  saveData, deleteData, emptyData, newId,
 } from "./store.js";
 
 export const DEMO_ID = "demo";
@@ -159,14 +159,4 @@ export function deleteAccount(accountId) {
   saveAccounts(getAccounts().filter((a) => a.id !== accountId));
   deleteData(accountId);
   clearSession();
-}
-
-/* ---------- The logged-in account's data ---------- */
-
-export function loadData(account) {
-  return getData(account.id);
-}
-
-export function storeData(account, data) {
-  saveData(account.id, data);
 }

@@ -89,10 +89,6 @@
     "comingTitle": "Your dashboard is on its way",
     "comingBody": "A summary of your sales and orders, with charts, is coming to this page soon. In the meantime, your orders and customers are ready to explore."
   },
-  "placeholder": {
-    "title": "Coming soon to the prototype",
-    "body": "This section is being built. Check back soon."
-  },
   "settings": {
     "title": "Settings",
     "business": "Your business",
@@ -119,7 +115,15 @@
     "deleteConfirmBtn": "Delete account",
     "deleted": "Your account has been deleted.",
     "aboutTitle": "About this prototype",
-    "aboutBody": "Raseed is still being built, and this prototype shows how it will work. Everything you enter stays in this browser and is never sent anywhere. Creating an account doesn't add you to the waitlist."
+    "aboutBody": "Raseed is still being built, and this prototype shows how it will work. Everything you enter stays in this browser and is never sent anywhere. Creating an account doesn't add you to the waitlist.",
+    "invoicesTitle": "Invoices and tax",
+    "taxLabel": "Add sales tax to new orders",
+    "taxHint": "Applies to orders you create from now on. Existing orders and invoices keep their tax.",
+    "taxRate": "Sales tax rate (%)",
+    "taxOn": "Sales tax turned on for new orders.",
+    "taxOff": "Sales tax turned off for new orders.",
+    "taxRateSaved": "Sales tax rate set to {rate}%.",
+    "taxRateError": "Enter a rate between 0 and 100."
   },
   "notFound": {
     "title": "Page not found",
@@ -332,5 +336,66 @@
     "Marj Al-Hamam",
     "Abu Nseir",
     "Jabal Amman"
-  ]
+  ],
+  "invoices": {
+    "title": "Invoices",
+    "count": {
+      "one": "1 invoice",
+      "other": "{count} invoices"
+    },
+    "searchLabel": "Search invoices",
+    "searchPlaceholder": "Search by invoice number or customer",
+    "emptyTitle": "No invoices yet",
+    "emptyBody": "Open any order and tap “Create invoice”.",
+    "goToOrders": "Go to orders",
+    "noResultsTitle": "No matching invoices",
+    "noResultsBody": "Try a different invoice number or name.",
+    "clearSearch": "Clear search",
+    "create": "Create invoice",
+    "view": "View invoice {number}",
+    "created": "Invoice {number} created.",
+    "cancelledNote": "Cancelled orders can't be invoiced.",
+    "heading": "Invoice",
+    "sampleLabel": "Sample e-invoice – prototype, not submitted to JoFotara",
+    "number": "Invoice no.",
+    "date": "Issue date",
+    "order": "Order",
+    "seller": "From",
+    "billTo": "Bill to",
+    "item": "Item",
+    "qty": "Qty",
+    "unitPrice": "Unit price",
+    "amount": "Amount",
+    "subtotal": "Subtotal",
+    "tax": "Sales tax ({rate}%)",
+    "total": "Total",
+    "paymentMethod": "Payment method",
+    "paymentStatus": "Payment status",
+    "qrLabel": "QR code with the invoice number, seller, date and total",
+    "qrCaption": "Scan to check the invoice number, seller, date and total.",
+    "thanks": "Thank you for your order!",
+    "madeWith": "Made with Raseed · raseedjo.github.io",
+    "download": "Download PDF",
+    "downloadHint": "Opens the print window. Choose “Save as PDF”.",
+    "back": "Invoices",
+    "backToOrder": "Order #{number}",
+    "changedTitle": "This order changed after the invoice was issued",
+    "changedBody": "The invoice still shows the original details. Issue an updated invoice to match the order.",
+    "reissue": "Issue updated invoice",
+    "reissued": "Invoice {number} issued. It replaces {old}.",
+    "replacedBy": "This invoice was replaced by {number}.",
+    "replacedPill": "Replaced",
+    "replaces": "Replaces invoice {number}",
+    "seeNew": "See {number}",
+    "orderDeleted": "The order for this invoice was deleted.",
+    "missingTitle": "Invoice not found",
+    "missingBody": "This invoice doesn't exist.",
+    "qr": {
+      "title": "Raseed sample e-invoice (not submitted to JoFotara)",
+      "invoice": "Invoice",
+      "seller": "Seller",
+      "date": "Date",
+      "total": "Total"
+    }
+  }
 }

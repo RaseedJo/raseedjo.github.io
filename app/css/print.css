@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Printing and "Save as PDF" (loaded with media="print")
+   Only the invoice is printed: the app's bars, buttons and notes are hidden.
+   Printing through the browser keeps Arabic text shaped correctly.
+   ========================================================================== */
+
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+html,
+body,
+.shell {
+  background: #fff !important;
+}
+
+body {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.appbar,
+.nav,
+.toasts,
+.fab,
+.banner,
+.no-print,
+dialog {
+  display: none !important;
+}
+
+.shell {
+  display: block !important;
+  min-height: 0 !important;
+}
+
+.main {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.view { animation: none !important; }
+
+.invoice {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 10.5pt;
+}
+
+/* Always the full table on paper */
+.invoice__items .col-qty,
+.invoice__items .col-unit { display: table-cell !important; }
+.invoice__unit-inline { display: none !important; }
+.invoice__parties { grid-template-columns: 1fr 1fr !important; }
+
+.invoice__items tr,
+.invoice__bottom,
+.invoice__payment,
+.invoice__foot { break-inside: avoid; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

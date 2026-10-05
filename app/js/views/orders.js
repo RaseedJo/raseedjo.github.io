@@ -16,6 +16,7 @@ import {
 import {
   orderRow, paidPill, setOrderStatus, trySave, emptyState, missingView, backLink, isLate, initials,
 } from "./components.js";
+import { createInvoice } from "./invoices.js";
 
 const FILTERS = ["all", ...STATUSES, "unpaid"];
 const SORTS = ["newest", "oldest", "delivery"];
@@ -247,6 +248,7 @@ export function orderDetailView({ account, params }) {
   const notes = localText(order.notes);
   const late = isLate(order);
   const title = t("orders.orderNumber", { number: order.number });
+  const invoice = order.invoiceId ? data.invoices.find((inv) => inv.id === order.invoiceId) : null;
 
   return {
     title,
@@ -258,6 +260,11 @@ export function orderDetailView({ account, params }) {
           <p class="page-sub">${t("orders.orderedOn", { date: formatDay(order.createdAt) })}</p>
         </div>
         <div class="page-head__actions">
+          ${invoice
+            ? html`<a class="btn btn--primary btn--sm" href="#/invoices/${invoice.id}">${icon("invoices")} ${t("invoices.view", { number: invoice.number })}</a>`
+            : order.status === "cancelled"
+              ? ""
+              : html`<button type="button" class="btn btn--primary btn--sm" data-action="invoice">${icon("invoices")} ${t("invoices.create")}</button>`}
           <a class="btn btn--ghost btn--sm" href="#/orders/${order.id}/edit">${icon("edit")} ${t("orders.edit")}</a>
           <button type="button" class="btn btn--danger-ghost btn--sm" data-action="delete">${icon("trash")} ${t("orders.delete")}</button>
         </div>
@@ -351,6 +358,14 @@ export function orderDetailView({ account, params }) {
 
         const action = event.target.closest("[data-action]");
         if (!action) return;
+
+        if (action.dataset.action === "invoice") {
+          const created = createInvoice(account, order.id);
+          if (!created) return;
+          ctx.navigate(`/invoices/${created.id}`);
+          toast(t("invoices.created", { number: created.number }));
+          return;
+        }
 
         if (action.dataset.action === "toggle-paid") {
           const saved = trySave(account, (d) => {

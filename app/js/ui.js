@@ -63,6 +63,7 @@ const ICONS = {
   message: '<path d="M4.5 19.5l1.3-3.7A7.8 7.8 0 1 1 8.7 18.5l-4.2 1Z"/>',
   back: '<path d="M19 12H5M10.5 6.5 5 12l5.5 5.5"/>',
   check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  download: '<path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/>',
 };
 
 // Icons that point somewhere and must be mirrored in Arabic

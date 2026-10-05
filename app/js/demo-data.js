@@ -5,6 +5,7 @@
 
 import { emptyData } from "./store.js";
 import { isoDay } from "./model.js";
+import { issueInvoice, sellerSnapshot } from "./invoice-model.js";
 
 const AREAS = {
   khalda: { en: "Khalda", ar: "خلدا" },
@@ -82,6 +83,9 @@ const ORDERS = [
 ];
 
 const TAX_RATE = 16;
+
+// Delivered orders that already have an invoice in the demo
+const INVOICED = [1003, 1004, 1008, 1011, 1013, 1015, 1019, 1021, 1022, 1024, 1025];
 const FIRST_ORDER_NUMBER = 1001;
 
 function at(daysAgo, hour, minute, now) {
@@ -142,5 +146,13 @@ export function createDemoData(now = new Date()) {
   });
 
   data.counters.order = FIRST_ORDER_NUMBER + ORDERS.length - 1;
+
+  // Invoices, numbered in the order they were issued (on delivery)
+  const seller = sellerSnapshot({ isDemo: true, businessNameKey: "demo.businessName", fullNameKey: "demo.ownerName", businessType: "food" });
+  data.orders
+    .filter((order) => INVOICED.includes(order.number))
+    .sort((a, b) => (a.updatedAt < b.updatedAt ? -1 : 1))
+    .forEach((order, i) => issueInvoice(data, order, seller, { date: new Date(order.updatedAt), id: `demo-i${i + 1}` }));
+
   return data;
 }

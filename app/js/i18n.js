@@ -81,6 +81,11 @@ export function tp(key, count, vars = {}) {
   return t(chosen, { count: formatNumber(count), ...vars });
 }
 
+/** A text in every language, e.g. { en: "Mama Huda's Kitchen", ar: "مطبخ ماما هدى" } */
+export function tAll(key) {
+  return Object.fromEntries(LANGUAGES.map((lang) => [lang, lookup(lang, key) ?? lookup("en", key) ?? key]));
+}
+
 /** A list from the translation files, e.g. suggested areas. */
 export function tList(key) {
   const list = lookup(current, key) ?? lookup("en", key);

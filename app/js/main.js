@@ -11,10 +11,11 @@ import {
 import { logoSvg } from "./logo.js";
 import { loginView, signupView } from "./views/auth.js";
 import { homeView } from "./views/home.js";
-import { comingSoonView, notFoundView } from "./views/placeholder.js";
+import { notFoundView } from "./views/placeholder.js";
 import { settingsView } from "./views/settings.js";
 import { ordersListView, orderDetailView, orderFormView } from "./views/orders.js";
 import { customersListView, customerDetailView, customerFormView } from "./views/customers.js";
+import { invoicesListView, invoiceView } from "./views/invoices.js";
 
 const appRoot = document.getElementById("app");
 const WAITLIST_URL = "../#signup";
@@ -36,7 +37,8 @@ addRoute("/customers", { nav: "customers", view: customersListView });
 addRoute("/customers/new", { nav: "customers", view: customerFormView });
 addRoute("/customers/:id/edit", { nav: "customers", view: customerFormView });
 addRoute("/customers/:id", { nav: "customers", view: customerDetailView });
-addRoute("/invoices", { nav: "invoices", view: comingSoonView("nav.invoices", "invoices") });
+addRoute("/invoices", { nav: "invoices", view: invoicesListView });
+addRoute("/invoices/:id", { nav: "invoices", view: invoiceView });
 addRoute("/settings", { nav: "settings", view: settingsView });
 
 const NAV_ITEMS = [

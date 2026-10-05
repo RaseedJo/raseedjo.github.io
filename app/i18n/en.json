@@ -86,8 +86,44 @@
     "morning": "Good morning, {name}",
     "afternoon": "Good afternoon, {name}",
     "evening": "Good evening, {name}",
-    "comingTitle": "Your dashboard is on its way",
-    "comingBody": "A summary of your sales and orders, with charts, is coming to this page soon. In the meantime, your orders and customers are ready to explore."
+    "newOrder": "New order",
+    "kpiLabel": "Summary",
+    "sales": "Sales",
+    "salesSub": "Last 30 days",
+    "orders": "Orders",
+    "ordersSub": "Last 30 days, not counting cancelled",
+    "unpaid": "Unpaid",
+    "unpaidSub": {
+      "one": "1 order still to be paid",
+      "other": "{count} orders still to be paid"
+    },
+    "waiting": "Waiting for delivery",
+    "late": {
+      "one": "1 late",
+      "other": "{count} late"
+    },
+    "dueToday": {
+      "one": "1 due today",
+      "other": "{count} due today"
+    },
+    "nothingDue": "Nothing due today",
+    "salesChart": "Sales per day",
+    "salesChartSub": "Last 30 days, in JD",
+    "statusChart": "Orders by status",
+    "statusChartSub": "Orders placed in the last 30 days",
+    "productsChart": "Top 5 products",
+    "productsChartSub": "By sales in the last 30 days",
+    "noSales": "No orders in the last 30 days yet.",
+    "showTable": "Show as table",
+    "dateCol": "Date",
+    "salesCol": "Sales",
+    "statusCol": "Status",
+    "countCol": "Orders",
+    "productCol": "Product",
+    "recentTitle": "Recent orders",
+    "viewAll": "View all orders",
+    "noRecent": "No orders yet. Add your first one to see it here.",
+    "chartsUnavailable": "The charts couldn't load. The numbers are in the tables below."
   },
   "settings": {
     "title": "Settings",

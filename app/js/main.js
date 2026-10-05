@@ -10,7 +10,7 @@ import {
 } from "./ui.js";
 import { logoSvg } from "./logo.js";
 import { loginView, signupView } from "./views/auth.js";
-import { homeView } from "./views/home.js";
+import { dashboardView } from "./views/dashboard.js";
 import { notFoundView } from "./views/placeholder.js";
 import { settingsView } from "./views/settings.js";
 import { ordersListView, orderDetailView, orderFormView } from "./views/orders.js";
@@ -27,7 +27,7 @@ setDemoDataFactory(createDemoData);
 addRoute("/login", { public: true, guestOnly: true, view: loginView });
 addRoute("/signup", { public: true, guestOnly: true, view: signupView });
 addRoute("/demo", { public: true, action: openDemo });
-addRoute("/dashboard", { nav: "dashboard", view: homeView });
+addRoute("/dashboard", { nav: "dashboard", view: dashboardView });
 // "new" and "edit" are listed before "/:id" so they aren't mistaken for an ID
 addRoute("/orders", { nav: "orders", view: ordersListView });
 addRoute("/orders/new", { nav: "orders", view: orderFormView });

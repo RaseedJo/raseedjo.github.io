@@ -67,6 +67,8 @@ src="https://www.facebook.com/tr?id=1406177954266903&ev=PageView&noscript=1"
   </div>
 
   <div class="page" id="page">
+    <!-- The first screen looks exactly as before: logo, headline and the waitlist -->
+    <div class="first-screen">
     <header class="topbar">
       <div class="lang" id="lang-toggle" role="group" dir="ltr" data-active="en"
            aria-label="Language" data-i18n-attr="aria-label:langGroup">
@@ -143,25 +145,87 @@ src="https://www.facebook.com/tr?id=1406177954266903&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <div class="contact reveal" style="--i: 4">
-        <span class="contact__rule" aria-hidden="true"></span>
-        <p class="contact__line">
-          <span data-i18n="contactLead">Have an inquiry? Reach us at</span>
-          <a class="link" href="mailto:getraseed@gmail.com" dir="ltr">getraseed@gmail.com</a>
-        </p>
-        <a class="social" href="https://instagram.com/getraseed" target="_blank" rel="noopener noreferrer"
-           aria-label="Raseed on Instagram, @getraseed" data-i18n-attr="aria-label:instagramLabel">
-          <svg class="social__icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
-            <rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-            <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-            <circle cx="17.3" cy="6.7" r="1.15" fill="currentColor"/>
-          </svg>
-          <span dir="ltr">@getraseed</span>
-        </a>
-      </div>
+      <a class="demo-cue reveal" style="--i: 4" href="#try">
+        <span data-i18n="demoCue">Or try the working demo</span>
+        <svg class="demo-cue__arrow" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">
+          <path d="M10 4v11M5.5 10.5 10 15l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </main>
+    </div>
 
-    <footer class="footer reveal" style="--i: 5">
+    <!-- The working prototype (the app lives at /app/) -->
+    <section class="try" id="try" aria-labelledby="try-title">
+      <div class="try__inner">
+        <div class="try__text">
+          <p class="try__eyebrow" data-i18n="tryEyebrow">Working prototype</p>
+          <h2 class="try__title" id="try-title" data-i18n="tryTitle">Try Raseed now</h2>
+          <p class="try__lead" data-i18n="tryLead">A working demo that runs in your browser. Nothing you type leaves your device.</p>
+
+          <ul class="try__features">
+            <li class="feature">
+              <svg class="feature__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.2 8h13.6l-1 12.5H6.2L5.2 8Z"/><path d="M9 10.5V7a3 3 0 0 1 6 0v3.5"/></svg>
+              <p><span class="feature__title" data-i18n="featOrdersTitle">Orders</span>
+              <span class="feature__body" data-i18n="featOrdersBody">Track every order from new to delivered with one tap.</span></p>
+            </li>
+            <li class="feature">
+              <svg class="feature__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 19.8c.4-3.4 2.9-5.6 6.2-5.6s5.8 2.2 6.2 5.6"/><path d="M15.6 4.9a3.2 3.2 0 0 1 0 6.2"/><path d="M17.8 14.5c1.9.8 3.1 2.6 3.4 5.3"/></svg>
+              <p><span class="feature__title" data-i18n="featCustomersTitle">Customers</span>
+              <span class="feature__body" data-i18n="featCustomersBody">Keep each customer's phone, area and order history.</span></p>
+            </li>
+            <li class="feature">
+              <svg class="feature__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 2.8h8.6L19 7.2v14H6V2.8Z"/><path d="M14.3 3v4.6h4.6"/><path d="M9 12.5h7M9 16.5h4.5"/></svg>
+              <p><span class="feature__title" data-i18n="featInvoicesTitle">Invoices</span>
+              <span class="feature__body" data-i18n="featInvoicesBody">Create invoices with a QR code and save them as PDF.</span></p>
+            </li>
+            <li class="feature">
+              <svg class="feature__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+              <p><span class="feature__title" data-i18n="featDashboardTitle">Dashboard</span>
+              <span class="feature__body" data-i18n="featDashboardBody">See sales, unpaid orders and best sellers at a glance.</span></p>
+            </li>
+          </ul>
+
+          <div class="try__actions">
+            <a class="try-btn try-btn--solid" href="app/#/demo">
+              <span data-i18n="tryDemo">Try the demo</span>
+              <svg class="try-btn__arrow" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false">
+                <path d="M4 10h11M11 5.5 15.5 10 11 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a class="try-btn try-btn--outline" href="app/#/signup" data-i18n="tryCreate">Create an account</a>
+          </div>
+          <p class="try__note">
+            <span data-i18n="tryNote">A demo account doesn't add you to the waitlist.</span>
+            <a class="link" href="#signup" data-i18n="tryWaitlist">Join the waitlist</a>
+          </p>
+        </div>
+
+        <div class="try__shot">
+          <img class="phone" src="assets/app-preview-en.jpg" width="360" height="720" loading="lazy" decoding="async"
+               alt="The Raseed demo on a phone: sales, orders, unpaid and waiting totals, and a chart of daily sales."
+               data-i18n-attr="src:tryShotSrc,alt:tryShotAlt">
+        </div>
+      </div>
+    </section>
+
+    <div class="contact">
+      <span class="contact__rule" aria-hidden="true"></span>
+      <p class="contact__line">
+        <span data-i18n="contactLead">Have an inquiry? Reach us at</span>
+        <a class="link" href="mailto:getraseed@gmail.com" dir="ltr">getraseed@gmail.com</a>
+      </p>
+      <a class="social" href="https://instagram.com/getraseed" target="_blank" rel="noopener noreferrer"
+         aria-label="Raseed on Instagram, @getraseed" data-i18n-attr="aria-label:instagramLabel">
+        <svg class="social__icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+          <rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="17.3" cy="6.7" r="1.15" fill="currentColor"/>
+        </svg>
+        <span dir="ltr">@getraseed</span>
+      </a>
+    </div>
+
+    <footer class="footer">
       <p data-i18n="footer">© 2026 Raseed. All rights reserved.</p>
     </footer>
   </div>

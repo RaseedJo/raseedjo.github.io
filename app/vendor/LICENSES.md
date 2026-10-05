@@ -6,5 +6,6 @@ a CDN is blocked, and so the app never contacts another server.
 | Folder | Library | Version | License | Source |
 | --- | --- | --- | --- | --- |
 | `qrcode-generator-2.0.4/` | QR Code Generator for JavaScript, by Kazuhiko Arase | 2.0.4 | MIT (see the header in each file) | https://github.com/kazuhikoarase/qrcode-generator |
+| `chart.js-4.5.1/` | Chart.js (`chart.umd.min.js`) | 4.5.1 | MIT (`chart.js-4.5.1/LICENSE.md`) | https://www.chartjs.org |
 
 "QR Code" is a registered trademark of DENSO WAVE INCORPORATED.

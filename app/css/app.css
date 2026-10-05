@@ -2145,6 +2145,136 @@ html[lang="ar"] .invoice__thanks { font-family: var(--font-arabic); font-weight:
 }
 
 /* ==========================================================================
+   Dashboard
+   ========================================================================== */
+
+/* ---------- Summary tiles ---------- */
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 900px) {
+  .kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+}
+
+.kpi {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.kpi__label { color: var(--text-2); font-size: 0.875rem; font-weight: 600; }
+
+/* Big standalone numbers use normal (proportional) digits */
+.kpi__value {
+  margin-top: 2px;
+  font-size: clamp(1.15rem, 0.95rem + 1.1vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.kpi__value--warn { color: #A3281F; }
+
+.kpi__sub { color: var(--text-3); font-size: 0.8125rem; line-height: 1.4; }
+
+/* ---------- Charts ---------- */
+
+.dash-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.dash-grid .card + .card { margin-top: 0; }
+
+@media (min-width: 1100px) {
+  .dash-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dash-grid .chart-card:first-child { grid-column: 1 / -1; }
+}
+
+.chart-card { min-width: 0; }
+
+.chart-card__sub { margin-top: 2px !important; color: var(--text-3); font-size: 0.8125rem; }
+
+/* The height includes the axis labels, so nothing gets cut off */
+.chart-box {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  margin-top: 14px;
+}
+
+.chart-box--sales { height: 240px; }
+.chart-box--status { height: 190px; }
+.chart-box--products { height: 250px; }
+
+.chart-card__empty {
+  margin-top: 14px;
+  padding: 28px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  color: var(--text-2);
+  text-align: center;
+}
+
+/* The table view under every chart */
+.chart-table { margin-top: 10px; }
+
+.chart-table summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  color: var(--teal);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chart-table summary:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.data-table {
+  width: 100%;
+  margin-top: 6px;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 7px 4px;
+  text-align: start;
+}
+
+.data-table thead tr { border-bottom: 1px solid var(--border-strong); }
+.data-table tbody tr { border-bottom: 1px solid var(--border); }
+.data-table thead th { color: var(--text-3); font-weight: 600; }
+.data-table tbody th { font-weight: 500; }
+.data-table .num-col { text-align: end; white-space: nowrap; }
+
+/* ---------- Recent orders ---------- */
+
+.dash-recent { margin-top: 24px; }
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+/* ==========================================================================
    Reduced motion
    ========================================================================== */
 

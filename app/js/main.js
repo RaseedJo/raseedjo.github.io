@@ -91,6 +91,7 @@ function renderAuthLayout(view) {
 function renderShellFrame(account) {
   appRoot.innerHTML = html`
     <div class="shell">
+      <button type="button" class="skip-link" data-skip>${t("app.skip")}</button>
       <header class="appbar">
         <a class="appbar__brand" href="#/dashboard" aria-label="${t("nav.home")}">${raw(logoSvg(t("app.name")))}</a>
         <span class="badge">${t("app.prototype")}</span>
@@ -243,6 +244,13 @@ async function boot() {
       logOut();
       navigate("/login", { replace: true });
       toast(t("settings.loggedOut"));
+      return;
+    }
+    if (event.target.closest("[data-skip]")) {
+      // A button, not a #main link: links starting with # would be read as page addresses
+      const target = appRoot.querySelector("[data-view] [data-autofocus]") || appRoot.querySelector("#main");
+      if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+      target.focus();
       return;
     }
     if (event.target.closest("[data-reload]")) window.location.reload();

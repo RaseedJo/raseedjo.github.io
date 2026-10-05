@@ -65,6 +65,26 @@ img, svg { display: block; }
 /* Text that is always left-to-right (emails, phone numbers) */
 .ltr { direction: ltr; unicode-bidi: isolate; }
 
+/* "Skip to content": hidden until reached with the Tab key */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  inset-inline-start: 8px;
+  z-index: 100;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--cream);
+  color: var(--ink);
+  font-weight: 600;
+  cursor: pointer;
+  transform: translateY(-150%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus { transform: none; }
+.skip-link:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 2px; }
+
 /* ---------- Boot screen (shown until the app loads) ---------- */
 
 .boot {
@@ -1296,6 +1316,7 @@ html[lang="ar"] .pill { font-size: 0.8125rem; }
 .order-list,
 .customer-list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* never wider than the screen */
   gap: 10px;
   margin: 0;
   padding: 0;
@@ -1317,6 +1338,7 @@ html[lang="ar"] .pill { font-size: 0.8125rem; }
 
 .order-row__main {
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* lets long item lists end in "…" */
   gap: 4px;
   padding: 14px 16px 10px;
   color: inherit;
@@ -1797,6 +1819,7 @@ html[lang="ar"] .avatar { font-family: var(--font-arabic); }
 
 .invoice-list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 10px;
   margin: 0;
   padding: 0;
@@ -1822,6 +1845,7 @@ html[lang="ar"] .avatar { font-family: var(--font-arabic); }
 
 .invoice-row__main {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2px;
   min-width: 0;
 }
@@ -1937,17 +1961,17 @@ html[lang="ar"] .invoice__kind { font-family: var(--font-arabic); font-weight: 6
 
 .invoice__parties {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 16px 24px;
   margin-top: 22px;
   line-height: 1.5;
 }
 
-.invoice__parties p { color: var(--text-2); }
+.invoice__parties p { color: var(--text-2); overflow-wrap: anywhere; } /* long emails and names wrap */
 .invoice__parties .invoice__strong { color: var(--text); font-size: 1rem; font-weight: 600; }
 
 @media (max-width: 479px) {
-  .invoice__parties { grid-template-columns: 1fr; }
+  .invoice__parties { grid-template-columns: minmax(0, 1fr); }
 }
 
 .invoice__label,
@@ -2029,6 +2053,14 @@ html[lang="ar"] .invoice__items th { font-size: 0.8125rem; letter-spacing: 0; }
   .invoice__unit-inline { display: none; }
 }
 
+@media (max-width: 420px) {
+  .invoice__items .num-col,
+  .invoice__totals dd { white-space: normal; overflow-wrap: anywhere; }
+  .invoice__totals dt { padding-inline-end: 14px; }
+  .invoice__number,
+  .invoice__meta dd { overflow-wrap: anywhere; }
+}
+
 .invoice__bottom {
   display: flex;
   flex-wrap: wrap-reverse;
@@ -2062,7 +2094,7 @@ html[lang="ar"] .invoice__items th { font-size: 0.8125rem; letter-spacing: 0; }
 
 .invoice__totals {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: minmax(0, auto) auto;
   gap: 6px 0;
   min-width: min(100%, 17rem);
   margin: 0;

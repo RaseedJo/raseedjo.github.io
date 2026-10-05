@@ -8,7 +8,8 @@
     "joinWaitlist": "Join the waitlist",
     "dataNote": "Everything you enter stays in this browser.",
     "loadError": "Something went wrong while loading this page.",
-    "reload": "Reload"
+    "reload": "Reload",
+    "skip": "Skip to content"
   },
   "lang": {
     "group": "Language"

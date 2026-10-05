@@ -57,7 +57,7 @@ dialog {
 .invoice__items .col-qty,
 .invoice__items .col-unit { display: table-cell !important; }
 .invoice__unit-inline { display: none !important; }
-.invoice__parties { grid-template-columns: 1fr 1fr !important; }
+.invoice__parties { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
 
 .invoice__items tr,
 .invoice__bottom,
